@@ -5,15 +5,21 @@ const { book } = require("../models");
  * @param {object} reqBody
  * @returns {Promise<User>}
  */
-const createrBook = async (reqBody) => {
+const createBook = async (reqBody) => {
   return book.create(reqBody);
 };
 
-const getBookList = async (filter, options) => {
+const getBookList = async (req,res) => {
   return book.find()
 };
 
+const deleteBook= async (bookId) => {
+  return book.findByIdAndDelete(bookId);
+};
+
+
 module.exports = {
-  createrBook,
-  getBookList
+  createBook,
+  getBookList,
+  deleteBook
 };
