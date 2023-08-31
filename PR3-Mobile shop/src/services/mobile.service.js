@@ -22,25 +22,26 @@ const getMobileById = async (mobileId) => {
 
 // update mobile details by id
 const updateMobile = async (mobileId, updateBody) => {
-    return mobile.findByIdAndUpdate(mobileId, { $det: updateBody });
-};
-
-// update mobile status by id
-const updateMobileStatus = async (mobileId, updateBody) => {
     return mobile.findByIdAndUpdate(mobileId, { $set: updateBody });
 };
 
-//  Get mobile status
-const getMobileStatus = async (mobileId, { is_active }) => {
-    const mobileStatus = mobile.findOne(mobileId, { is_active });
+// update mobile status by
+const manageMobileStatus = async (mobileId) => {
+    const mobileExists = await getMobileById(mobileId);
+    if (!mobileExists) {
+      throw new Error("mobile not found!");
+    }
 
-    if (mobileStatus) {
-        return mobile.findByIdAndUpdate(mobileId, { $set: { is_active: false } });
-    }
-    else {
-        return mobile.findByIdAndUpdate(mobileId, { $set: { is_active: true } });
-    }
-};
+    return mobile.findOneAndUpdate(
+      { _id: mobileId },
+      {
+        $set: {
+          is_active: !mobileExists.is_active,
+        },
+      },
+      { new: true }
+    );
+  };
 
 module.exports = {
     createMobile,
@@ -48,6 +49,5 @@ module.exports = {
     deleteMobile,
     getMobileById,
     updateMobile,
-    updateMobileStatus,
-    getMobileStatus
+    manageMobileStatus
 }

@@ -15,7 +15,7 @@ const mobileSchema = new mongoose.Schema(
             trim:true
         },
         mobile_price:{
-            type:number,
+            type:Number,
             trim:true
         },
         is_active:{

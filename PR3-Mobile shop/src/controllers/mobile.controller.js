@@ -1,5 +1,4 @@
-const { mobile } = require("../models");
-const mobileService = require("../services");
+const {mobileService} = require("../services");
 
 /* Create mobile */
 const createMobile = async (req, res) => {
@@ -104,29 +103,28 @@ const updateMobile = async (req, res) => {
     }
 };
 
-/** update mobile status by id */
-const updateMobileStatus = async (req, res) => {
+/** Manage Mobile status */
+const manageMobileStatus = async (req, res) => {
     try {
-        const mobileId = req.params.mobileId;
-        if (!mobileId) {
-            throw new Error("Mobile not found");
-        };
-
-        const mobileStatus = await mobileService.getMobileStatus(mobileId, { is_active });
-        await mobileService.updateMobileStatus(mobileId, mobileStatus.is_active);
-
-        res.status(200).json({
-            success: true,
-            message: "mobile status updated successfully!"
-        });
-
+      const manageStatus = await mobileService.manageMobileStatus(
+        req.params.mobileId
+      );
+      let resMessage = manageStatus.is_active
+        ? "mobile can enable to sale."
+        : "mobile can not enable to sale";
+      res.status(200).json({
+        success: true,
+        message: resMessage,
+        data: manageStatus,
+      });
     } catch (error) {
-        res.status(400).json({
-             success: false,
-              message: error.message 
-            });
+      res.status(error?.statusCode || 400).json({
+        success: false,
+        message:
+          error?.message || "Something went wrong, please try again or later!",
+      });
     }
-}
+  };
 
 
 module.exports = {
@@ -135,5 +133,5 @@ module.exports = {
     deleteMobile,
     getMobileById,
     updateMobile,
-    updateMobileStatus
+    manageMobileStatus
 }
