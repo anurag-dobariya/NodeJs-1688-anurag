@@ -1,0 +1,13 @@
+module.exports.hotelService = require("./hotel.service.js");
+module.exports.busService = require("./bus.service.js");
+module.exports.stationaryService = require("./stationary.service.js");
+module.exports.schoolService = require("./school.service.js");
+module.exports.travelService = require("./travel.service.js");
+module.exports.pharmacyService = require("./pharmacy.service.js");
+module.exports.jewelleryService = require("./jewellery.service.js");
+module.exports.movieService = require("./movie.service.js");
+module.exports.musicService = require("./music.service.js");
+module.exports.groceryService = require("./grocery.service.js");
+module.exports.genreService = require("./genre.service.js");
+module.exports.productService = require("./product.service.js");
+module.exports.studentService = require("./student.service.js");
