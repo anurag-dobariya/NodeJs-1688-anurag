@@ -1,7 +1,7 @@
 const {restaurant} = require("../models");
 
 // create restaurant
-const createRestaurant = async(reqBody) =>{
+const registerRestaurant = async(reqBody) =>{
     return restaurant.create(reqBody)
 };
 
@@ -25,8 +25,9 @@ const updateRestaurant = async(restaurantId , updateBody) =>{
     return restaurant.findByIdAndUpdate(restaurantId , {$set : updateBody})
 };
 
+
 module.exports = {
-    createRestaurant,
+    registerRestaurant,
     getRestaurantList,
     getRestaurantById,
     deleteRestaurant,

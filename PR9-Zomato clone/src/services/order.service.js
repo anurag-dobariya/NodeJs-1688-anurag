@@ -7,7 +7,7 @@ const createOrder = async(reqBody) =>{
 
 // get order list
 const getOrderList = async(req,res) =>{
-    return order.find()
+    return order.find().populate("user").populate("restaurant").populate("food_item")
 };
 
 // get order details by id

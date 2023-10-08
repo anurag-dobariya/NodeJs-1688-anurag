@@ -1,7 +1,7 @@
 const joi = require("joi");
 
 // create validation for cart
-const createcart = {
+const createCart = {
     body: joi.object().keys({
         quantity: joi.number().integer().required(),
         order_status: joi.string().valid('approved', 'rejected', 'inprocess' , 'delivered').default('inprocess').required(),
@@ -13,5 +13,5 @@ const createcart = {
 };
 
 module.exports = {
-    createcart
+    createCart
 }

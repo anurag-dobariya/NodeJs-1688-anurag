@@ -1,7 +1,7 @@
 const {user} = require("../models");
 
-// create user
-const createUser = async(reqBody) =>{
+// register user
+const registerUser = async(reqBody) =>{
     return user.create(reqBody)
 };
 
@@ -15,6 +15,27 @@ const getUserById = async(userId) =>{
     return user.findById(userId)
 };
 
+// get user details by email
+const findUserByEmail = async (email) => {
+    return user.findOne(email);
+  };
+
+//   find user and update
+  const findUserAndUpdate = async (_id, token) => {
+    return await user.findByIdAndUpdate(
+      { _id },
+      {
+        $set: { token },
+      },
+      { new: true }
+    );
+  };
+
+//   get user by role
+  const getAllUser = async (role) => {
+    return await user.find(role);
+  };
+
 // delete user
 const deleteUser = async(userId) =>{
     return user.findByIdAndDelete(userId)
@@ -26,9 +47,12 @@ const updateUser = async(userId , updateBody) =>{
 };
 
 module.exports = {
-    createUser,
+    registerUser,
     getUserList,
     getUserById,
     deleteUser,
-    updateUser
+    updateUser,
+    findUserByEmail,
+    findUserAndUpdate,
+    getAllUser
 }

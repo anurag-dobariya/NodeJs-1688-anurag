@@ -7,7 +7,7 @@ const createCart = async(reqBody) =>{
 
 // get cart list
 const getCartList = async(req,res) =>{
-    return cart.find()
+    return cart.find().populate("user").populate("order").populate("food_item")
 };
 
 // get cart details by id

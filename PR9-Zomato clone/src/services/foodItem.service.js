@@ -7,7 +7,7 @@ const createFoodItem = async(reqBody) =>{
 
 // get foodItem list
 const getFoodItemList = async(req,res) =>{
-    return foodItem.find()
+    return foodItem.find().populate("restaurant")
 };
 
 // get foodItem details by id

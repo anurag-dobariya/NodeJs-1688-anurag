@@ -4,3 +4,6 @@ module.exports.restaurantValidation = require("./restaurant.validation");
 module.exports.foodItemValidation = require("./foodItem.validation");
 module.exports.orderValidation = require("./order.validation");
 module.exports.cartValidation = require("./cart.validation");
+module.exports.countryValidation = require("./country.validation");
+module.exports.stateValidation = require("./state.validation");
+module.exports.cityValidation = require("./city.validation");
